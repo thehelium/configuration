@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# Set the command alias
+
+alias vim=nvim
+alias cat="bat"
+alias ls="exa"
