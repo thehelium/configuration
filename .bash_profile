@@ -5,7 +5,7 @@ export PATH="$HOME/bin:$PATH";
 # * All script files in the `scripts` directory.
 # * e.g. /scripts/path can be used to extend `$PATH`.
 # * e.g. /scripts/extra can be used for other settings you don’t want to commit.
-for file in /home/harry/scripts/* ; do
+for file in ~/scripts/* ; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
