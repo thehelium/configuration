@@ -16,7 +16,7 @@ export PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # pnpm
-export PNPM_HOME="/home/harry/.local/share/pnpm"
+export PNPM_HOME="~/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # n-install
