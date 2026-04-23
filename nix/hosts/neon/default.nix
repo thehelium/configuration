@@ -1,17 +1,16 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 {
   imports = [
     # generated with nixos-generate-config on neon, then copied here
     ./hardware-configuration.nix
+    ./users.nix
+    ./desktop.nix
     ./nvidia.nix
     ./tailscale.nix
     ./syncthing.nix
     ./immich.nix
+    ./seaweedfs.nix
+    ./infisical.nix
   ];
 
   networking = {
@@ -27,27 +26,6 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  users.users.harris = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "video"
-      "render"
-    ];
-    shell = pkgs.zsh;
-  };
-
-  programs.zsh.enable = true;
-
-  # Hyprland (using flake input for latest features)
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-    xwayland.enable = true;
-  };
-
   services.openssh.enable = true;
   programs.nix-ld.enable = true;
 
@@ -62,15 +40,10 @@
     neovim
   ];
 
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    # Hyprland binary cache
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-  };
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
