@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     # generated with nixos-generate-config on neon, then copied here
@@ -19,12 +24,17 @@
     efi.canTouchEfiVariables = true;
   };
 
-  time.timeZone = "Asia/Shanghai";
+  time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
   users.users.harris = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "render" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "render"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -38,13 +48,25 @@
     xwayland.enable = true;
   };
 
+  services.openssh.enable = true;
+  programs.nix-ld.enable = true;
+
+  # Podman: daemonless container runtime, docker-compatible (for dev databases, etc.)
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
   environment.systemPackages = with pkgs; [
     git
-    vim
+    neovim
   ];
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     # Hyprland binary cache
     substituters = [ "https://hyprland.cachix.org" ];
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
