@@ -21,6 +21,8 @@
     lazygit
     wget
     ffmpeg
+    rclone
+    infisical
   ];
 
   programs.zsh = {
