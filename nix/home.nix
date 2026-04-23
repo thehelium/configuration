@@ -1,0 +1,75 @@
+{ pkgs, lib, ... }:
+{
+  home.username = "harris";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/harris" else "/home/harris";
+  home.stateVersion = "25.11";
+
+  nixpkgs.config.allowUnfree = true;
+
+  home.packages = with pkgs; [
+    tmux
+    eza
+    bat
+    ripgrep
+    fzf
+    yazi
+    fastfetch
+    nixfmt
+    go
+    bun
+    uv
+    lazygit
+    wget
+    ffmpeg
+  ];
+
+  programs.zsh = {
+    enable = true;
+    completionInit = ""; # Zim handles compinit
+    shellAliases = {
+      ls = "eza";
+      cat = "bat";
+      lg = "lazygit";
+    };
+    initContent = ''
+      # Home Manager rebuild
+      function hms() {
+        nix run '/Users/harris/.config/nix#homeConfigurations."harris@aarch64-darwin".activationPackage'
+      }
+
+      # yazi cd-on-exit wrapper
+      function yy() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        yazi "$@" --cwd-file="$tmp"
+        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          builtin cd -- "$cwd"
+        fi
+        rm -f -- "$tmp"
+      }
+    ''
+    + lib.optionalString pkgs.stdenv.isDarwin ''
+      # Zim framework (installed via Homebrew)
+      ZIM_HOME=''${ZDOTDIR:-''${HOME}}/.zim
+      if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZIM_CONFIG_FILE:-''${ZDOTDIR:-''${HOME}}/.zimrc} ]]; then
+        source /opt/homebrew/opt/zimfw/share/zimfw.zsh init
+      fi
+      source ''${ZIM_HOME}/init.zsh
+
+      # Custom zsh configs
+      source ~/.config/zsh/env.zsh
+      source ~/.config/zsh/aliases.zsh
+      source ~/.config/zsh/fzf.zsh
+
+      autopair-init
+      source ~/.zim/modules/fzf-tab/fzf-tab.plugin.zsh
+
+      source ~/.config/zsh/prompt.zsh
+      source ~/.config/zsh/functions/rcode.zsh
+      source ~/.config/zsh/functions/dotenv.zsh
+      source ~/.config/zsh/widgets/lazygit.zsh
+      source ~/.config/zsh/widgets/smart_e.zsh
+    '';
+  };
+
+  programs.home-manager.enable = true;
+}
