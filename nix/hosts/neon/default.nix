@@ -9,7 +9,6 @@
     ./tailscale.nix
     ./syncthing.nix
     ./immich.nix
-    ./seaweedfs.nix
     ./infisical.nix
   ];
 
