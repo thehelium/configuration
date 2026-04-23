@@ -36,7 +36,15 @@
     initContent = ''
       # Home Manager rebuild
       function hms() {
-        nix run '/Users/harris/.config/nix#homeConfigurations."harris@aarch64-darwin".activationPackage'
+        local flake
+        flake="$(readlink -f ~/.config/nix 2>/dev/null || echo ~/.config/nix)"
+        local system
+        system="$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')"
+        case "$system" in
+          arm64-darwin|aarch64-darwin) system="aarch64-darwin" ;;
+          x86_64-linux)                system="x86_64-linux"   ;;
+        esac
+        nix run "$flake#homeConfigurations.\"harris@$system\".activationPackage"
       }
 
       # yazi cd-on-exit wrapper
