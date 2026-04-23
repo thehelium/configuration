@@ -1605,6 +1605,8 @@
 	<false/>
 	<key>SeparateStatusBarsPerPane</key>
 	<false/>
+	<key>SeparateWindowTitlePerTab</key>
+	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<true/>
 	<key>ShowNewOutputIndicator</key>
