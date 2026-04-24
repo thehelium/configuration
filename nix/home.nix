@@ -24,6 +24,7 @@
     ffmpeg
     rclone
     infisical
+    zimfw
   ];
 
   programs.zsh = {
@@ -58,11 +59,11 @@
         rm -f -- "$tmp"
       }
     ''
-    + lib.optionalString pkgs.stdenv.isDarwin ''
-      # Zim framework (installed via Homebrew)
+    + ''
+      # Zim framework (via nixpkgs)
       ZIM_HOME=''${ZDOTDIR:-''${HOME}}/.zim
       if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZIM_CONFIG_FILE:-''${ZDOTDIR:-''${HOME}}/.zimrc} ]]; then
-        source /opt/homebrew/opt/zimfw/share/zimfw.zsh init
+        source ${pkgs.zimfw}/share/zimfw.zsh init
       fi
       source ''${ZIM_HOME}/init.zsh
 
