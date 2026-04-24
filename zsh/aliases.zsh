@@ -1,4 +1,5 @@
 alias vi="nvim"
+[[ "$(uname -s)" == "Linux" ]] && alias nrs="sudo nixos-rebuild switch --flake ~/.config/nix#neon"
 alias gr="go run ."
 alias cr="cargo run"
 alias p="pnpm"
