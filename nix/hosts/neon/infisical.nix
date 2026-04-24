@@ -39,7 +39,7 @@
           # ENCRYPTION_KEY, AUTH_SECRET, JWT_* → use sops-nix or load from file
         };
         environmentFiles = [ "/etc/infisical/env" ];
-        ports = [ "127.0.0.1:8080:8080" ];
+        ports = [ "0.0.0.0:8080:8080" ];
         volumes = [ "infisical-data:/app/.infisical" ];
       };
     };
