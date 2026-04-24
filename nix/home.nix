@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     tmux
+    claude-code
     eza
     bat
     ripgrep
