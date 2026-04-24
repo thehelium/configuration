@@ -7,7 +7,7 @@
     dataDir = "/home/harris/Sync";
     configDir = "/home/harris/.config/syncthing";
     # guiAddress overrides the existing config file (settings.gui.address does not)
-    guiAddress = "0.0.0.0:8384";
+    guiAddress = "127.0.0.1:18384";
     settings.gui.insecureSkipHostcheck = true;
   };
 

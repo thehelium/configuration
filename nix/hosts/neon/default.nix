@@ -31,6 +31,9 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.openssh.enable = true;
+
+  # Zim handles compinit; disable NixOS's default compinit call in /etc/zshrc
+  programs.zsh.enableCompletion = false;
   programs.nix-ld.enable = true;
 
   # Podman: daemonless container runtime, docker-compatible (for dev databases, etc.)

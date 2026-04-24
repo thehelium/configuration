@@ -2,10 +2,9 @@
 {
   services.immich = {
     enable = true;
-    # listen on all interfaces; firewall trusts tailscale0 only, unreachable from outside
-    host = "0.0.0.0";
-    port = 2283;
-    openFirewall = true;
+    host = "127.0.0.1";
+    port = 12283;
+    openFirewall = false;
     mediaLocation = "/var/lib/immich";
   };
 
