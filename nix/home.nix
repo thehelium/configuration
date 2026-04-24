@@ -114,6 +114,7 @@
       source /home/harris/configuration/zsh/prompt.zsh
       source /home/harris/configuration/zsh/functions/rcode.zsh
       source /home/harris/configuration/zsh/functions/dotenv.zsh
+      source /home/harris/configuration/zsh/functions/ssh.zsh
       source /home/harris/configuration/zsh/widgets/lazygit.zsh
       source /home/harris/configuration/zsh/widgets/smart_e.zsh
     ''
@@ -136,6 +137,7 @@
       source ~/.config/zsh/prompt.zsh
       source ~/.config/zsh/functions/rcode.zsh
       source ~/.config/zsh/functions/dotenv.zsh
+      source ~/.config/zsh/functions/ssh.zsh
       source ~/.config/zsh/widgets/lazygit.zsh
       source ~/.config/zsh/widgets/smart_e.zsh
     '';
