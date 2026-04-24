@@ -6,11 +6,9 @@
     group = "users";
     dataDir = "/home/harris/Sync";
     configDir = "/home/harris/.config/syncthing";
-    settings.gui = {
-      # listen on all interfaces; firewall trusts tailscale0 only, unreachable from outside
-      address = "0.0.0.0:8384";
-      insecureSkipHostcheck = true;
-    };
+    # guiAddress overrides the existing config file (settings.gui.address does not)
+    guiAddress = "0.0.0.0:8384";
+    settings.gui.insecureSkipHostcheck = true;
   };
 
   # Syncthing sync ports (must be open externally for direct connections)
