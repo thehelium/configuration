@@ -5,7 +5,7 @@
     # listen on all interfaces; firewall trusts tailscale0 only, unreachable from outside
     host = "0.0.0.0";
     port = 2283;
-    openFirewall = false;
+    openFirewall = true;
     mediaLocation = "/var/lib/immich";
   };
 
