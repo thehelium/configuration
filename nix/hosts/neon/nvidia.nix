@@ -2,10 +2,10 @@
 {
   # NVIDIA proprietary driver (Wayland + CUDA support)
   hardware.nvidia = {
-    modesetting.enable = true;            # required for Wayland
+    modesetting.enable = true; # required for Wayland
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = false;                         # proprietary driver, more stable than open module
+    open = false; # proprietary driver, more stable than open module
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable; # 595.58.03
   };
@@ -29,10 +29,10 @@
   };
 
   # CUDA support
-  nixpkgs.config.cudaSupport = true;
+  # nixpkgs.config.cudaSupport = true;
 
   environment.systemPackages = with pkgs; [
-    cudaPackages.cudatoolkit  # CUDA toolkit
-    nvtopPackages.nvidia      # GPU monitor
+    cudaPackages.cudatoolkit # CUDA toolkit
+    nvtopPackages.nvidia # GPU monitor
   ];
 }
