@@ -6,12 +6,9 @@
     containers = {
       infisical-db = {
         image = "postgres:18-alpine";
-        environment = {
-          POSTGRES_USER = "infisical";
-          POSTGRES_DB = "infisical";
-          POSTGRES_PASSWORD_FILE = "/run/secrets/infisical-db-password";
-        };
-        volumes = [ "infisical-db:/var/lib/postgresql/data" ];
+        environmentFiles = [ "/etc/infisical/db.env" ];
+        volumes = [ "infisical-db:/var/lib/postgresql" ];
+        extraOptions = [ "--network=infisical" ];
       };
 
       infisical-redis = {
@@ -23,6 +20,7 @@
           "1"
         ];
         volumes = [ "infisical-redis:/data" ];
+        extraOptions = [ "--network=infisical" ];
       };
 
       infisical = {
@@ -33,16 +31,20 @@
         ];
         environment = {
           NODE_ENV = "production";
-          DB_CONNECTION_URI = "postgresql://infisical@infisical-db/infisical";
           REDIS_URL = "redis://infisical-redis:6379";
-          # Secrets below must be set via environment file — do not hardcode
-          # ENCRYPTION_KEY, AUTH_SECRET, JWT_* → use sops-nix or load from file
         };
         environmentFiles = [ "/etc/infisical/env" ];
         ports = [ "0.0.0.0:8080:8080" ];
         volumes = [ "infisical-data:/app/.infisical" ];
+        extraOptions = [ "--network=infisical" ];
       };
     };
+  };
+
+  systemd.services."podman-infisical-db" = {
+    preStart = ''
+      podman network inspect infisical >/dev/null 2>&1 || podman network create infisical
+    '';
   };
 
   # Expose via Tailscale only — no direct public port
