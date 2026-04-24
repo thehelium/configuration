@@ -1289,6 +1289,8 @@
 			<string>Default</string>
 			<key>Disable Window Resizing</key>
 			<false/>
+			<key>Draw Powerline Glyphs</key>
+			<true/>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -1338,6 +1340,8 @@
 			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
+			<key>Initial Text</key>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -2590,6 +2594,8 @@
 											<string>Default</string>
 											<key>Disable Window Resizing</key>
 											<false/>
+											<key>Draw Powerline Glyphs</key>
+											<true/>
 											<key>Flashing Bell</key>
 											<false/>
 											<key>Foreground Color</key>
@@ -2632,13 +2638,15 @@
 												<real>0.97250000000000003</real>
 											</dict>
 											<key>Guid</key>
-											<string>763B2902-313A-42A5-9CCE-CF622BB31586</string>
+											<string>4AEF04DC-85DF-4260-860C-949B7489CE71</string>
 											<key>Horizontal Spacing</key>
 											<real>1</real>
 											<key>Icon</key>
 											<integer>1</integer>
 											<key>Idle Code</key>
 											<integer>0</integer>
+											<key>Initial Text</key>
+											<string></string>
 											<key>Jobs to Ignore</key>
 											<array>
 												<string>rlogin</string>
@@ -2855,7 +2863,7 @@
 											<string>/Users/harris</string>
 										</dict>
 										<key>Columns</key>
-										<integer>184</integer>
+										<integer>181</integer>
 										<key>Commands</key>
 										<array/>
 										<key>Directories</key>
@@ -2891,13 +2899,11 @@
 										</array>
 										<key>Program</key>
 										<dict>
-											<key>Command</key>
-											<string>login -fqp "harris"</string>
 											<key>Type</key>
-											<string>Command</string>
+											<string>Shell Launcher</string>
 										</dict>
 										<key>Rows</key>
-										<integer>61</integer>
+										<integer>59</integer>
 										<key>Session GUID</key>
 										<string>AA78F5EB-E02B-4BC5-AD59-ADAD9C69627C</string>
 										<key>Short Lived Single Use</key>
@@ -2923,7 +2929,7 @@
 										<key>height</key>
 										<real>919</real>
 										<key>width</key>
-										<real>1482</real>
+										<real>1478</real>
 										<key>x</key>
 										<real>0.0</real>
 										<key>y</key>
@@ -2938,7 +2944,7 @@
 								<key>height</key>
 								<real>919</real>
 								<key>width</key>
-								<real>1482</real>
+								<real>1478</real>
 								<key>x</key>
 								<real>0.0</real>
 								<key>y</key>
@@ -2981,7 +2987,7 @@
 				<key>Use Transparency</key>
 				<true/>
 				<key>Width</key>
-				<real>1482</real>
+				<real>1478</real>
 				<key>Window Type</key>
 				<integer>12</integer>
 				<key>X Origin</key>
