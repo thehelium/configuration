@@ -6,6 +6,10 @@
 	<false/>
 	<key>AutoHideTmuxClientSession</key>
 	<true/>
+	<key>BracketedPasteMode</key>
+	<false/>
+	<key>ConvertDosNewlines</key>
+	<false/>
 	<key>CopySelection</key>
 	<false/>
 	<key>Custom Color Presets</key>
@@ -332,6 +336,8 @@
 	<string>16C86FAD-9A06-445E-9716-59F89BBC0836</string>
 	<key>EnableDivisionView</key>
 	<true/>
+	<key>EscapeShellCharsWithBackslash</key>
+	<false/>
 	<key>FlashTabBarInFullscreen</key>
 	<false/>
 	<key>GlobalKeyMap</key>
@@ -1551,6 +1557,16 @@
 	<key>OpenBookmark</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
+	<false/>
+	<key>PasteSpecialChunkDelay</key>
+	<real>0.01</real>
+	<key>PasteSpecialChunkSize</key>
+	<integer>1024</integer>
+	<key>PasteSpecialRegex</key>
+	<string></string>
+	<key>PasteSpecialSubstitution</key>
+	<string></string>
+	<key>PasteSpecialUseRegexSubstitution</key>
 	<false/>
 	<key>PerPaneBackgroundImage</key>
 	<true/>
