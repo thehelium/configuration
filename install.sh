@@ -54,6 +54,27 @@ link_module() {
     info "$name → $dst"
 }
 
+hms() {
+    local flake="$CONFIG_DIR/nix"
+    local os arch system
+
+    os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+    arch="$(uname -m)"
+
+    case "${arch}-${os}" in
+        arm64-darwin|aarch64-darwin) system="aarch64-darwin" ;;
+        x86_64-linux)                system="x86_64-linux"   ;;
+        *)
+            error "Unsupported platform: ${arch}-${os}"
+            exit 1
+            ;;
+    esac
+
+    info "Running home-manager for harris@${system}..."
+    nix run "${flake}#homeConfigurations.\"harris@${system}\".activationPackage"
+}
+
+# ── Step 1: symlinks ──────────────────────────────────────────────
 echo ""
 echo "configuration install"
 echo "  repo   : $REPO_DIR"
@@ -66,6 +87,15 @@ for module in "${MODULES[@]}"; do
     link_module "$module"
 done
 
+# ── Step 2: home-manager ──────────────────────────────────────────
 echo ""
-echo "Done. Open a new shell or run: source ~/.zshrc"
+if ! command -v nix &>/dev/null; then
+    warn "nix not found — skipping home-manager activation"
+    warn "Install nix first, then re-run this script"
+else
+    hms
+fi
+
+# ── Step 3: fresh shell ───────────────────────────────────────────
 echo ""
+exec zsh
